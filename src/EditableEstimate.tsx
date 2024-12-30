@@ -10,6 +10,7 @@ interface ClientData {
   clientPhone: string;
   jobLocation: string;
   workDetails: string[];
+  workMaterials: string[];
   totalCost: string;
 }
 
@@ -130,8 +131,19 @@ const EditableEstimate: React.FC = () => {
 
         {/* Work Details */}
         <div className="mb-8">
+            <p>Labor:</p>
           <ul className="list-none space-y-2">
             {clientData.workDetails.map((detail, index) => (
+              <li key={index}>{detail}</li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Materials Cost */}
+        <div className="mb-8">
+            <p>Materials:</p>
+          <ul className="list-none space-y-2">
+            {clientData.workMaterials.map((detail, index) => (
               <li key={index}>{detail}</li>
             ))}
           </ul>

@@ -5,20 +5,22 @@ const EditClientDetails: React.FC = () => {
   const navigate = useNavigate();
 
   const [clientData, setClientData] = useState({
-    date: "12/13/2022",
-    clientName: "Stephanie Lerner",
-    clientEmail: "steph.lerner@gmail.com",
-    clientPhone: "518-257-2688",
-    jobLocation: "39 E. Durham St, Philadelphia PA 19119",
+    date: "",
+    clientName: "",
+    clientEmail: "",
+    clientPhone: "",
+    jobLocation: "",
     workDetails: [
-      "Refinish hardwood flooring (whole room)",
-      "New plumbing stack (kitchen ceiling to basement)",
-      "Repair & finish ceiling and walls",
-      "Demo basement ceiling",
-      "Haul out debris",
-      "Insulate ceiling",
+      "",
+      "",
+      "",
     ],
-    totalCost: "$8,000.00",
+    workMaterials: [
+        "",
+        "",
+        "",
+      ],
+    totalCost: "$",
   });
 
   // Handle changes for inputs (non-array fields)
@@ -33,6 +35,15 @@ const EditClientDetails: React.FC = () => {
       const updatedWorkDetails = [...prev.workDetails];
       updatedWorkDetails[index] = value;
       return { ...prev, workDetails: updatedWorkDetails };
+    });
+  };
+
+  // Handle changes for individual work details
+  const handleWorkMaterialChange = (index: number, value: string) => {
+    setClientData((prev) => {
+      const updatedWorkMaterials = [...prev.workMaterials];
+      updatedWorkMaterials[index] = value;
+      return { ...prev, workMaterials: updatedWorkMaterials };
     });
   };
 
@@ -51,6 +62,23 @@ const EditClientDetails: React.FC = () => {
       return { ...prev, workDetails: updatedWorkDetails };
     });
   };
+
+  // Add a material detail
+  const handleAddWorkMaterials = () => {
+    setClientData((prev) => ({
+      ...prev,
+      workMaterials: [...prev.workMaterials, ""], // Add an empty string for a new detail
+    }));
+  };
+
+  // Remove a material detail
+  const handleRemoveWorkMaterial = (index: number) => {
+    setClientData((prev) => {
+      const updatedWorkMaterials = prev.workMaterials.filter((_, i) => i !== index);
+      return { ...prev, workDetails: updatedWorkMaterials };
+    });
+  };
+  
 
   // Save the client data to Local Storage for history and navigate to the estimate page
   const handleSave = () => {
@@ -141,6 +169,34 @@ const EditClientDetails: React.FC = () => {
         className="mb-4 py-2 px-4 bg-green-600 text-white font-bold rounded hover:bg-green-700"
       >
         Add Work Detail
+      </button>
+    
+
+      {/* Editable Material Details */}
+      <label className="block font-bold mb-1">Material Details:</label>
+      <ul className="mb-4">
+        {clientData.workMaterials.map((detail, index) => (
+          <li key={index} className="flex items-center mb-2">
+            <input
+              type="text"
+              value={detail}
+              onChange={(e) => handleWorkMaterialChange(index, e.target.value)}
+              className="block w-full p-2 border rounded mr-2"
+            />
+            <button
+              onClick={() => handleRemoveWorkMaterial(index)}
+              className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+            >
+              Remove
+            </button>
+          </li>
+        ))}
+      </ul>
+      <button
+        onClick={handleAddWorkMaterials}
+        className="mb-4 py-2 px-4 bg-green-600 text-white font-bold rounded hover:bg-green-700"
+      >
+        Add Material Detail
       </button>
 
       <label className="block font-bold mb-1">Total Cost:</label>
