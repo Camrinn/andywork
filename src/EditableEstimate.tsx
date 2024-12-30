@@ -91,7 +91,7 @@ const EditableEstimate: React.FC = () => {
           </div>
           <div className="w-32 h-32">
             <img
-              src="/public/handyandy.png"
+              src="/handyandy.png"
               alt="Handy Andy LLC"
               className="w-full h-full object-contain"
             />
