@@ -106,7 +106,6 @@ const EditableEstimate: React.FC = () => {
             <p className="text-sm">Phone: {clientData.clientPhone}</p>
             <p className="mt-4">Job Location:</p>
             <p>{clientData.jobLocation}</p>
-            <p>Philadelphia PA 19119</p>
           </div>
           <div className="text-right">
             <p>Handy Andy LLC</p>
@@ -142,11 +141,11 @@ const EditableEstimate: React.FC = () => {
         <div className="mb-8">
           <div className="flex justify-between">
             <p>Labor & Materials</p>
-            <p>${clientData.totalCost}</p>
+            <p>{clientData.totalCost}</p>
           </div>
           <div className="flex justify-between mt-2">
             <p className="font-bold">Total:</p>
-            <p className="font-bold">${clientData.totalCost}</p>
+            <p className="font-bold">{clientData.totalCost}</p>
           </div>
         </div>
 

@@ -52,13 +52,23 @@ const EditClientDetails: React.FC = () => {
     });
   };
 
-  // Save and navigate to the next page
+  // Save the client data to Local Storage for history and navigate to the estimate page
   const handleSave = () => {
+    // Retrieve existing estimates from local storage
+    const existingEstimates = JSON.parse(localStorage.getItem("estimates") || "[]");
+
+    // Add the current estimate to the array
+    const updatedEstimates = [...existingEstimates, clientData];
+
+    // Save the updated array to local storage
+    localStorage.setItem("estimates", JSON.stringify(updatedEstimates));
+
+    // Navigate to the estimate view page
     navigate("/estimate", { state: { clientData } });
   };
 
   return (
-    <div className="p-8 mx-auto max-w-xl border border-gray-300 rounded bg-white shadow text-gray-900">
+    <div className="p-8 mt-8 mx-auto max-w-xl border border-gray-300 rounded bg-white shadow text-gray-900">
       <h1 className="text-2xl font-bold mb-4">Edit Client Details</h1>
 
       <label className="block font-bold mb-1">Date:</label>
