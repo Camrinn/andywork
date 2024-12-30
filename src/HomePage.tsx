@@ -9,7 +9,7 @@ const HomePage: React.FC = () => {
       <div className="text-center space-y-8">
         {/* Logo */}
         <img
-          src="/public/handyandy.png" // Replace with the correct path to your logo
+          src="/handyandy.png" // Replace with the correct path to your logo
           alt="Handy Andy LLC Logo"
           className="mx-auto h-32 w-32 object-contain" // Adjust size as needed
         />
